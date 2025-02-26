@@ -1,0 +1,11 @@
+.element {
+	all: unset;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 50px;
+	width: 250px;
+	border-bottom: 1px solid black;
+	cursor: pointer;
+	user-select: none;
+}

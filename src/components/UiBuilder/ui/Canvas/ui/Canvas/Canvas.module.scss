@@ -1,0 +1,11 @@
+.canvas {
+	flex: 1;
+	border: 1px solid black;
+	margin: 50px;
+	border-radius: 5px;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	max-height: 100%;
+	overflow-y: auto;
+}

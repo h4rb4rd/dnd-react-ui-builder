@@ -1,0 +1,12 @@
+.element {
+	padding: 15px;
+}
+
+.overlay {
+	opacity: 0.5;
+}
+
+.element > * {
+	width: 100%;
+	pointer-events: none;
+}

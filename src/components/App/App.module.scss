@@ -1,3 +1,7 @@
 .app {
-	height: 100%;
+	display: flex;
+	flex: 1;
+	overflow: hidden;
+	width: 100vw;
+	height: 100vh;
 }
