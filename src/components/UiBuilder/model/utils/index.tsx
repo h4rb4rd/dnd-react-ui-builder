@@ -18,9 +18,3 @@ export const createSpacer = (id: UniqueIdentifier): TCanvasElement => {
 		type: 'spacer',
 	}
 }
-
-export const replaceElement = (
-	elements: TCanvasElement[],
-	index: number,
-	newItem: TCanvasElement
-) => [...elements.slice(0, index), newItem, ...elements.slice(index + 1)]
