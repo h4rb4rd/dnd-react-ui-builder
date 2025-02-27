@@ -1,6 +1,7 @@
 import { DndContext, DragOverlay } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 
+import { Announcements } from '../Announcements/Announcements'
 import { Canvas, CanvasElement } from '../Canvas'
 import { SidebarElement } from '../Sidebar'
 import { Sidebar } from '../Sidebar'
@@ -9,7 +10,7 @@ import {
 	TElementsMapItem,
 	TSidebarElement,
 } from '../../model/types'
-import { useUiBuilder } from '../../model/hooks/useUiBuilder'
+import { useDndContent } from '../../model/hooks/useDndContent'
 
 import cls from './DndContent.module.scss'
 
@@ -30,7 +31,7 @@ export const DndContent = (props: DndContentProps) => {
 		handleDragStart,
 		handleDragOver,
 		handleDragEnd,
-	} = useUiBuilder(canvasElements, onChange)
+	} = useDndContent(canvasElements, onChange)
 
 	return (
 		<div className={cls.container}>
@@ -40,7 +41,7 @@ export const DndContent = (props: DndContentProps) => {
 				onDragEnd={handleDragEnd}
 				autoScroll
 			>
-				{/* Announcements */}
+				<Announcements />
 				<Sidebar
 					sidebarRegKey={sidebarRegKey}
 					sidebarElements={sidebarElements}
@@ -52,7 +53,6 @@ export const DndContent = (props: DndContentProps) => {
 					<Canvas elements={canvasElements} elementsMap={elementsMap} />
 				</SortableContext>
 				<DragOverlay dropAnimation={null}>
-					{/* show active dragged elements in overlay*/}
 					{activeSidebarElement ? (
 						<SidebarElement overlay element={activeSidebarElement} />
 					) : null}

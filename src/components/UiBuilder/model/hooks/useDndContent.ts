@@ -2,10 +2,10 @@ import { useCallback, useRef, useState } from 'react'
 import { DragEndEvent, DragOverEvent, DragStartEvent } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
 
-import { createSpacer } from '../../model/utils'
-import { TCanvasElement, TSidebarElement } from '../../model/types'
+import { createSpacer } from '../utils'
+import { TCanvasElement, TSidebarElement } from '../types'
 
-export const useUiBuilder = (
+export const useDndContent = (
 	canvasElements: TCanvasElement[],
 	onChange: (elements: TCanvasElement[]) => void
 ) => {
@@ -13,7 +13,7 @@ export const useUiBuilder = (
 	const [activeSidebarElement, setActiveSidebarElement] =
 		useState<TSidebarElement | null>(null) // only for elements from the sidebar
 	const [activeCanvasElement, setActiveCanvasElement] =
-		useState<TCanvasElement | null>(null) // only for elements that are in the form.
+		useState<TCanvasElement | null>(null) // only for elements that are in the canvas.
 	const spacerInsertedRef = useRef(false)
 	const currentDragElementRef = useRef<TCanvasElement | null>(null)
 
