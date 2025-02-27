@@ -2,10 +2,11 @@ import { UniqueIdentifier } from '@dnd-kit/core'
 
 import { elementsMap } from '../constants'
 import { TCanvasElement, TElementType } from '../types'
+import { Spacer } from '../../ui/Spacer/Spacer'
 
 export const getElement = (type: TElementType) => {
 	if (type === 'spacer') {
-		return <div className='spacer'>spacer</div>
+		return <Spacer />
 	}
 
 	return elementsMap[type] || <div>No renderer found for {type}</div>
