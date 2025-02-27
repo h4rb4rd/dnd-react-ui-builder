@@ -2,17 +2,18 @@ import { CSS } from '@dnd-kit/utilities'
 import { useSortable } from '@dnd-kit/sortable'
 import { UniqueIdentifier } from '@dnd-kit/core'
 
-import { TCanvasElement } from '../../../../model/types'
 import { CanvasElement } from '../CanvasElement/CanvasElement'
+import { TCanvasElement, TElementsMapItem } from '../../../../model/types'
 
 interface SortableElementProps {
 	id: UniqueIdentifier
 	index: number
 	element: TCanvasElement
+	elementsMap: Partial<TElementsMapItem>
 }
 
 export const SortableElement = (props: SortableElementProps) => {
-	const { id, index, element } = props
+	const { id, index, element, elementsMap } = props
 
 	const { attributes, listeners, setNodeRef, transform, transition } =
 		useSortable({
@@ -31,7 +32,7 @@ export const SortableElement = (props: SortableElementProps) => {
 
 	return (
 		<div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-			<CanvasElement element={element} />
+			<CanvasElement element={element} elementsMap={elementsMap} />
 		</div>
 	)
 }

@@ -1,50 +1,47 @@
-import { DndContext, DragOverlay } from '@dnd-kit/core'
-import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import { useCallback, useState } from 'react'
 
-import { Canvas, CanvasElement } from '../Canvas'
-import { SidebarElement } from '../Sidebar'
-import { Sidebar } from '../Sidebar'
-import { useUiBuilder } from '../../model/hooks/useUiBuilder'
+import { DndContent } from '../DndContent/DndContent'
+import { StaticContent } from '../StaticContent/StaticContent'
+import {
+	TCanvasElement,
+	TElementsMapItem,
+	TSidebarElement,
+} from '../../model/types'
 
 import cls from './UiBuilder.module.scss'
 
-export const UiBuilder = () => {
-	const {
-		activeSidebarElement,
-		activeCanvasElement,
-		elements,
-		sidebarRegKey,
-		handleDragStart,
-		handleDragOver,
-		handleDragEnd,
-	} = useUiBuilder()
+interface UiBuilderProps {
+	canvasElements: TCanvasElement[]
+	sidebarElements: TSidebarElement[]
+	elementsMap: Partial<TElementsMapItem>
+	onChange: (elements: TCanvasElement[]) => void
+}
+
+export const UiBuilder = (props: UiBuilderProps) => {
+	const { canvasElements, sidebarElements, elementsMap, onChange } = props
+
+	const [isEditable, setIsEditable] = useState(true)
+
+	const toggleEdit = useCallback(() => setIsEditable(prev => !prev), [])
 
 	return (
-		<div className={cls.container}>
-			<DndContext
-				onDragStart={handleDragStart}
-				onDragOver={handleDragOver}
-				onDragEnd={handleDragEnd}
-				autoScroll
-			>
-				{/* Announcements */}
-				<Sidebar sidebarRegKey={sidebarRegKey} />
-				<SortableContext
-					strategy={verticalListSortingStrategy}
-					items={elements.map(el => el.id)}
-				>
-					<Canvas elements={elements} />
-				</SortableContext>
-				<DragOverlay dropAnimation={null}>
-					{/* show active dragged elements in overlay*/}
-					{activeSidebarElement ? (
-						<SidebarElement overlay element={activeSidebarElement} />
-					) : null}
-					{activeCanvasElement ? (
-						<CanvasElement overlay element={activeCanvasElement} />
-					) : null}
-				</DragOverlay>
-			</DndContext>
-		</div>
+		<>
+			<button className={cls.btn} onClick={toggleEdit}>
+				{isEditable ? 'edit off' : 'edit on'}
+			</button>
+			{isEditable ? (
+				<DndContent
+					canvasElements={canvasElements}
+					sidebarElements={sidebarElements}
+					elementsMap={elementsMap}
+					onChange={onChange}
+				/>
+			) : (
+				<StaticContent
+					canvasElements={canvasElements}
+					elementsMap={elementsMap}
+				/>
+			)}
+		</>
 	)
 }

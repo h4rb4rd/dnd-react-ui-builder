@@ -1,10 +1,12 @@
 import { UniqueIdentifier } from '@dnd-kit/core'
 
-import { elementsMap } from '../constants'
-import { TCanvasElement, TElementType } from '../types'
+import { TCanvasElement, TElementsMapItem } from '../types'
 import { Spacer } from '../../ui/Spacer/Spacer'
 
-export const getElement = (type: TElementType) => {
+export const getElement = (
+	type: string,
+	elementsMap: Partial<TElementsMapItem>
+) => {
 	if (type === 'spacer') {
 		return <Spacer />
 	}

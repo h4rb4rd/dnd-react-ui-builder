@@ -1,16 +1,17 @@
 import { useDroppable } from '@dnd-kit/core'
 
 import { SortableElement } from '../SortableElement/SortableElement'
-import { TCanvasElement } from '../../../../model/types'
+import { TCanvasElement, TElementsMapItem } from '../../../../model/types'
 
 import cls from './Canvas.module.scss'
 
 interface CanvasProps {
 	elements: TCanvasElement[]
+	elementsMap: Partial<TElementsMapItem>
 }
 
 export const Canvas = (props: CanvasProps) => {
-	const { elements } = props
+	const { elements, elementsMap } = props
 
 	const { setNodeRef } = useDroppable({
 		id: 'canvas_droppable',
@@ -24,7 +25,13 @@ export const Canvas = (props: CanvasProps) => {
 		<div ref={setNodeRef} className={cls.canvas}>
 			<div className={cls.elements}>
 				{elements?.map((el, i) => (
-					<SortableElement key={el.id} id={el.id} element={el} index={i} />
+					<SortableElement
+						key={el.id}
+						id={el.id}
+						element={el}
+						index={i}
+						elementsMap={elementsMap}
+					/>
 				))}
 			</div>
 		</div>
