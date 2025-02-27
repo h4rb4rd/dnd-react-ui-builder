@@ -17,7 +17,7 @@ import { Canvas, CanvasElement } from '../Canvas'
 import { createSpacer } from '../../model/utils'
 import { SidebarElement } from '../Sidebar'
 import { Sidebar } from '../Sidebar'
-import { TDragElement, TSidebarElement } from '../../model/types'
+import { TCanvasElement, TSidebarElement } from '../../model/types'
 
 import '../../styles/uiBuilder.scss'
 import cls from './UiBuilder.module.scss'
@@ -27,10 +27,10 @@ export const UiBuilder = () => {
 	const [activeSidebarElement, setActiveSidebarElement] =
 		useState<TSidebarElement | null>(null) // only for elements from the sidebar
 	const [activeCanvasElement, setActiveCanvasElement] =
-		useState<TDragElement | null>(null) // only for elements that are in the form.
+		useState<TCanvasElement | null>(null) // only for elements that are in the form.
 	const spacerInsertedRef = useRef(false)
-	const currentDragElementRef = useRef<TDragElement | null>(null)
-	const [data, updateData] = useImmer<{ elements: TDragElement[] }>({
+	const currentDragElementRef = useRef<TCanvasElement | null>(null)
+	const [data, updateData] = useImmer<{ elements: TCanvasElement[] }>({
 		elements: [],
 	})
 	const { elements } = data
@@ -55,8 +55,6 @@ export const UiBuilder = () => {
 				currentDragElementRef.current = {
 					id: active.id,
 					type: activeData.element.type,
-					name: `${activeData.element.type}${data.elements.length + 1}`,
-					parent: null,
 				}
 				return
 			}
@@ -72,7 +70,7 @@ export const UiBuilder = () => {
 				draft.elements.splice(index, 1, createSpacer(active.id))
 			})
 		},
-		[data.elements.length, updateData]
+		[updateData]
 	)
 
 	const handleDragOver = useCallback(

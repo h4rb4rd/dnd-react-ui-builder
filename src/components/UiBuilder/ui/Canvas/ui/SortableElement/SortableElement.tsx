@@ -2,13 +2,13 @@ import { CSS } from '@dnd-kit/utilities'
 import { useSortable } from '@dnd-kit/sortable'
 import { UniqueIdentifier } from '@dnd-kit/core'
 
-import { TDragElement } from '../../../../model/types'
+import { TCanvasElement } from '../../../../model/types'
 import { CanvasElement } from '../CanvasElement/CanvasElement'
 
 interface SortableElementProps {
 	id: UniqueIdentifier
 	index: number
-	element: TDragElement
+	element: TCanvasElement
 }
 
 export const SortableElement = (props: SortableElementProps) => {

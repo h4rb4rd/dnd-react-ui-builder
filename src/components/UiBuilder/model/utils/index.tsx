@@ -1,7 +1,7 @@
 import { UniqueIdentifier } from '@dnd-kit/core'
 
 import { elementsMap } from '../constants'
-import { TDragElement, TElementType } from '../types'
+import { TCanvasElement, TElementType } from '../types'
 
 export const getElement = (type: TElementType) => {
 	if (type === 'spacer') {
@@ -11,17 +11,15 @@ export const getElement = (type: TElementType) => {
 	return elementsMap[type] || <div>No renderer found for {type}</div>
 }
 
-export const createSpacer = (id: UniqueIdentifier): TDragElement => {
+export const createSpacer = (id: UniqueIdentifier): TCanvasElement => {
 	return {
 		id,
 		type: 'spacer',
-		name: 'spacer',
-		parent: null,
 	}
 }
 
 export const replaceElement = (
-	elements: TDragElement[],
+	elements: TCanvasElement[],
 	index: number,
-	newItem: TDragElement
+	newItem: TCanvasElement
 ) => [...elements.slice(0, index), newItem, ...elements.slice(index + 1)]

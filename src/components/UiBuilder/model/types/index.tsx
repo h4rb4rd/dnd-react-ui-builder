@@ -11,9 +11,7 @@ export type TElementType =
 
 export type TSidebarElement = { type: TElementType; title: string }
 export type TElementsMapItem = { [K in TElementType]: JSX.Element }
-export type TDragElement = {
+export type TCanvasElement = {
 	id: UniqueIdentifier
 	type: TElementType
-	name: string
-	parent: null
 }

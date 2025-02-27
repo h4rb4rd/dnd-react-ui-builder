@@ -1,11 +1,11 @@
 import { classNames } from '../../../../model/utils/classNames'
 import { getElement } from '../../../../model/utils'
-import { TDragElement } from '../../../../model/types'
+import { TCanvasElement } from '../../../../model/types'
 
 import cls from './CanvasElement.module.scss'
 
 interface CanvasElementProps {
-	element: TDragElement
+	element: TCanvasElement
 	overlay?: boolean
 }
 

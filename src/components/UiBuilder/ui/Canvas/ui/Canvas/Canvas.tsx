@@ -1,12 +1,12 @@
 import { useDroppable } from '@dnd-kit/core'
 
 import { SortableElement } from '../SortableElement/SortableElement'
-import { TDragElement } from '../../../../model/types'
+import { TCanvasElement } from '../../../../model/types'
 
 import cls from './Canvas.module.scss'
 
 interface CanvasProps {
-	elements: TDragElement[]
+	elements: TCanvasElement[]
 }
 
 export const Canvas = (props: CanvasProps) => {
