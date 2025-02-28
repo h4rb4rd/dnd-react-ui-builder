@@ -8,9 +8,17 @@
 	border-bottom: 1px solid black;
 	cursor: pointer;
 	user-select: none;
+
+	&:hover {
+		color: #fff68a;
+	}
 }
 
 .overlay {
 	background: #fff68a;
 	color: #292929;
+
+	&:hover {
+		color: #292929;
+	}
 }
